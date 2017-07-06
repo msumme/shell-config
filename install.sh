@@ -19,13 +19,24 @@ for file in $dir/.*rc; do
     echo $last
     if [[ -e "$HOME/$last" ]];then
         warning "$last"
+        mv "$HOME/$last" "$HOME/$last.bk"
     fi
     ln -sf "$dir/$last" "$HOME/$last"
 done
 
-if [ -d "$HOME/.shell.d" ]; then
-    warning ".shell.d"
-    mv "$HOME/.shell.d" "$HOME/.shell.d.bk"
+#TODO - make a directory and then symlink everything together by default
+# but this way we don't actually overwrite the .shell.d at all - we just install our own.
+
+if [[ ! -d "$HOME/.shell.d" ]]; then
+    mkdir -p "$HOME/.shell.d"
 fi
 
-ln -s "$dir/.shell.d" "$HOME/.shell.d"
+for file in $dir/.shell.d/*; do
+    last=${file##*/}
+    if [[ -e "$HOME/.shell.d/$last" ]];then
+        warning ".shell.d/$last"
+        mv "$HOME/.shell.d/$last" "$HOME/.shell.d/$last.bk"
+    fi
+    ln -sf "$dir/.shell.d/$last" "$HOME/.shell.d/$last"
+done
+
