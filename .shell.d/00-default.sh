@@ -9,7 +9,7 @@ elif [[ "$unamestr" == "Darwin" ]]; then
 fi
 
 
-if [ "$platform" == "osx" ]; then
+if [[ "$platform" == "osx" ]]; then
     export JAVA_HOME="`/usr/libexec/java_home`"
 fi
 

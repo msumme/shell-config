@@ -1,7 +1,19 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+
+# Key bindings
 bindkey -e
+
+bindkey '^[[1;5D' backward-word
+bindkey '^[[5D' backward-word
+bindkey '^[[1;5C' forward-word
+bindkey '^[[5C' forward-word
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[3~' delete-char
+
+
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete #_match _prefix
@@ -24,14 +36,6 @@ compinit
 export MANPATH=$HOME/.nix-profile/share/man:/usr/local/share/man:$MANPATH
 export INFOPATH=$HOME/.nix-profile/share/info:/usr/local/share/info:$INFOPATH
 
-
-bindkey '[1;5D' backward-word
-bindkey '[5D' backward-word
-bindkey '[1;5C' forward-word
-bindkey '[5C' forward-word
-bindkey 'OH' beginning-of-line
-bindkey 'OF' end-of-line
-bindkey '[3~' delete-char
 
 
 autoload -Uz vcs_info
