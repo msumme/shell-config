@@ -40,3 +40,8 @@ for file in $dir/.shell.d/*; do
     ln -sf "$dir/.shell.d/$last" "$HOME/.shell.d/$last"
 done
 
+if [[ -e "$HOME/.gitconfig" ]]; then
+  warning ".gitconfig"
+  mv "$HOME/.gitconfig" "$HOME/.gitconfig.bk"
+fi
+cp "$dir/.gitconfig" "$HOME/.gitconfig"
